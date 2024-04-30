@@ -1,6 +1,7 @@
 'use client';
 
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
+import { updateInvoice } from '@/app/lib/actions';
 import {
   CheckIcon,
   ClockIcon,
@@ -17,8 +18,10 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+
   return (
-    <form>
+    <form action={updateInvoiceWithId}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -109,6 +112,7 @@ export default function EditInvoiceForm({
           </div>
         </fieldset>
       </div>
+      {/* Cancel/Edit Invoice */}
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/invoices"
